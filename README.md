@@ -1,7 +1,8 @@
-# sample2-yo
+# Magic Tools
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.15.1.
+This application is in progress...
+
+Run npm install & bower install after cloning app.
 
 ## Build & development
 
