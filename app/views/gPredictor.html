@@ -1,11 +1,34 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <label for="txtDOB"><h4>Mother's date of birth</h4></label>
-            <input type="date" id="txtDOB" jq-date-picker/>
-
+            <label for="txtDOB"><h4>{{staticContent.information.dob_label}}</h4></label>
+            <!--<input type="text" id="txtDOB" jq-date-picker/>-->
+            <p class="input-group">
+                <input id="txtDOB" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="selectedDOB"
+                       is-open="dateOfBirth.opened" datepicker-options="dateOptions" ng-required="true"
+                       alt-input-formats="altInputFormats" show-button-bar="false"/>
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
             <p>OR</p>
 
+            <label for="ddlAge"><h4>{{staticContent.information.age_label_1}}<strong>{{staticContent.information.age_label_2}}</strong></h4></label>
+
+            <div class="form-group">
+                <select id="ddlAge" class="form-control" ng-model="selectedAge" ng-options="age for age in ageData" >
+                    <option style="display:none" value="">{{staticContent.information.age_select_label}}</option>
+                </select>
+            </div>
+
+            <label for="ddlMonths"><h4>{{staticContent.information.month_of_conception_label}}</h4></label>
+
+            <div class="form-group">
+                <select id="ddlMonths" class="form-control" ng-model="selectedMonth" ng-options="age for age in months" >
+                    <option style="display:none" value="">{{staticContent.information.month_select_label}}</option>
+                </select>
+            </div>
 
         </div>
     </div>

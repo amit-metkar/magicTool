@@ -8,6 +8,7 @@
  * Controller of the ptApp
  */
 angular.module('ptApp')
-  .controller('MainCtrl', ['$scope', function ($scope) {
-        $scope.$parent.title = "Pregnancy Tools";
+  .controller('MainCtrl', ['$scope', 'gpStaticContent', function ($scope, gpStaticContent) {
+        $scope.staticContent = gpStaticContent;
+        $scope.$parent.title = $scope.staticContent.home.title;
   }]);
