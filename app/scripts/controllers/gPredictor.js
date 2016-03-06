@@ -8,7 +8,7 @@
  * Controller of the ptApp
  */
 angular.module('ptApp')
-    .controller('gPredictorCtrl', ['$scope', 'gpStaticContent', function ($scope, gpStaticContent) {
+    .controller('gPredictorCtrl', ['$scope', 'gpStaticContent', 'genderPredictorConstant', function ($scope, gpStaticContent, genderPredictorConstant) {
         $scope.staticContent = gpStaticContent;
 
         //set title of the screen
@@ -24,6 +24,21 @@ angular.module('ptApp')
         $scope.clearAge = function () {
             $scope.selectedAge = $scope.staticContent.information.age_select_label;
         };
+        $scope.$watch('selectedDOB', function (newValue, oldValue) {
+            if (newValue != oldValue && newValue !== null && $scope.selectedAge !== $scope.staticContent.information.age_select_label) {
+                $scope.clearAge();
+            }
+        });
+        $scope.$watch('selectedAge', function (newValue, oldValue) {
+            if (newValue != oldValue && newValue !== $scope.staticContent.information.age_select_label && $scope.selectedDOB !== null) {
+                $scope.clearDOB();
+            }
+        });
+
+        $scope.predictorGender = function() {
+           alert(genderPredictorConstant.table[$scope.selectedAge][$scope.selectedMonth]);
+        };
+
         // Disable weekend selection
         function disabled(data) {
             var date = data.date,
