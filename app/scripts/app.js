@@ -32,6 +32,11 @@ angular
                 controller: 'gPredictorCtrl',
                 controllerAs: 'gPredictor'
             })
+            .when('/gpResult/:gender', {
+                templateUrl: 'views/gpResult.html',
+                controller: 'gpResultCtrl',
+                controllerAs: 'gpResult'
+            })
             .when('/about', {
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl',

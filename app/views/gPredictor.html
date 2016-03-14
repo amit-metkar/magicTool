@@ -1,41 +1,58 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-            <label for="txtDOB"><h4>{{staticContent.information.dob_label}}</h4></label>
-            <!--<input type="text" id="txtDOB" jq-date-picker/>-->
-            <p class="input-group">
-                <input id="txtDOB" type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                       ng-model="selectedDOB"
-                       is-open="dateOfBirth.opened" datepicker-options="dateOptions" ng-required="true"
-                       alt-input-formats="altInputFormats" show-button-bar="false"/>
+            <form id="predictorForm" name='predictorForm' ng-submit="predictorGender()" no-validation-bubble>
+                <label for="txtDOB"><h4>{{staticContent.information.dob_label}}</h4></label>
+                <!--<input type="text" id="txtDOB" jq-date-picker/>-->
+                <p class="input-group">
+                    <input id="txtDOB" name="txtDOB" type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                           ng-model="selectedDOB"
+                           is-open="dateOfBirth.opened" datepicker-options="dateOptions" ng-required="validateDOB()"
+                           alt-input-formats="altInputFormats" show-button-bar="false"/>
                 <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i
                         class="glyphicon glyphicon-calendar"></i></button>
                 </span>
-            </p>
+                <div class="alert alert-danger" ng-hide="{{predictorForm.txtDOB.$valid}}">
+                    Please enter Mother's age or select Mother's age at the time of Conception.
+                </div>
+                </p>
 
-            <p>{{staticContent.information.or}}</p>
+                <p>{{staticContent.information.or}}</p>
 
-            <label for="ddlAge"><h4>{{staticContent.information.age_label_1}}<strong>{{staticContent.information.age_label_2}}</strong>
-            </h4></label>
+                <label for="ddlAge"><h4>{{staticContent.information.age_label_1}}<strong>{{staticContent.information.age_label_2}}</strong>
+                </h4></label>
 
-            <div class="form-group">
-                <select id="ddlAge" class="form-control" ng-model="selectedAge" ng-options="age for age in ageData">
-                    <option style="display:none" value="">{{staticContent.information.age_select_label}}</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <select id="ddlAge" name="ddlAge" class="form-control" ng-model="selectedAge" ng-options="age for age in ageData"
+                            ng-required="validateAge()">
+                        <!--<option style="display:none" value="">{{staticContent.information.age_select_label}}</option>-->
+                    </select>
+                </div>
 
-            <label for="ddlMonths"><h4>{{staticContent.information.month_of_conception_label}}</h4></label>
+                <div class="alert alert-danger" ng-hide="{{predictorForm.ddlAge.$valid}}">
+                    Please select Mother's age at the time of Conception or enter Mother's age.
+                </div>
 
-            <div class="form-group">
-                <select id="ddlMonths" class="form-control" ng-model="selectedMonth" ng-options="age for age in months">
-                    <option style="display:none" value="">{{staticContent.information.month_select_label}}</option>
-                </select>
-            </div>
+                <label for="ddlMonths"><h4>{{staticContent.information.month_of_conception_label}}</h4></label>
 
-            <div class="vertical-padding-20">
-                <button type="button" class="btn btn-success" ng-click="predictorGender()">{{staticContent.information.predict_button_text}}</button>
-            </div>
+                <div class="form-group">
+                    <select id="ddlMonths" name="ddlMonths" class="form-control" ng-model="selectedMonth"
+                            ng-options="age for age in months" ng-required="true">
+                        <!--<option style="display:none" value="">{{staticContent.information.month_select_label}}</option>-->
+                    </select>
+                </div>
+
+                <div class="alert alert-danger" ng-hide="{{predictorForm.ddlMonths.$valid}}">
+                    Please select Month of Conception
+                </div>
+
+                <div class="vertical-padding-20">
+                    <button type="submit" class="btn btn-success">
+                        {{staticContent.information.predict_button_text}}
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
